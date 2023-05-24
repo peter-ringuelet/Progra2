@@ -1,0 +1,60 @@
+programa Ej2Clase3
+procesos
+  proceso JuntarFlores(ES cant:numero)
+  comenzar
+      si (HayFlorEnLaEsquina)
+        mientras(HayFlorEnLaEsquina)
+          tomarFlor
+          cant:=cant+1
+  fin
+    
+areas
+  areaR1 : AreaP(1,1,1,10)
+  areaR2 : AreaP(2,11,2,20)
+  areaR3 : AreaP(2,1,2,1)
+robots 
+  robot tipo1
+  variables
+    cant:numero
+    cant2:numero
+  comenzar
+    recorrer(cant)
+    EnviarMensaje(cant,robot3)
+  fin
+  
+  robot tipo2
+  variables
+    cant:numero
+    cant2:numero
+  comenzar
+    recorrer(cant)
+    EnviarMensaje(cant,robot3)
+  fin
+  
+  robot tipo3
+  variables
+    diferencia: numero
+    cant1, cant2:numero
+  comenzar
+    RecibirMensaje(cant1,robot1)
+    RecibirMensaje(cant2,robot2)
+    si (cant1 > cant2)
+      diferencia:= cant1 - cant2
+      Informar(1,diferencia)
+    si(cant2 > cant1)
+      diferencia:=cant2 - cant1
+      Informar(2,diferencia)
+  fin
+      
+variables 
+  robot1: tipo1
+  robot2: tipo2
+  robot3:tipo3
+comenzar 
+  AsignarArea(robot1,areaR1)
+  AsignarArea(robot2,areaR2)
+  AsignarArea(robot3,areaR3)
+  Iniciar(robot1, 1, 1)
+  Iniciar(robot2, 2, 11)
+  Iniciar(robot3,2,1)
+fin

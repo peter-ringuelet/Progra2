@@ -1,0 +1,99 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 ORG 1000H\
+CADENA DB "SantiPedro"\
+LETRAS DB 10\
+VOCALES DB "AaEeIiOoUu"\
+CANT_VOCALES DB ?\
+\
+\
+ORG 3000H\
+SWAP: PUSH AX\
+      PUSH BX\
+      MOV DL,[BX]\
+      PUSH BX\
+      MOV BX,AX\
+      MOV CL,[BX]\
+      POP BX\
+      MOV [BX],CL\
+      MOV BX,AX\
+      MOV [BX],DL\
+      POP BX\
+      POP AX\
+RET\
+\
+ES_VOCAL: PUSH AX\
+          PUSH BX\
+          PUSH DX\
+          MOV BX, SP\
+          ADD BX, 8\
+          MOV AX,[BX]\
+          MOV BX,CX\
+          MOV CX,10    ;CANTIDAD DE VOCALES\
+   LOOP1: MOV DX,00H\
+          CMP AL, [BX]\
+          JZ VERDADERO\
+          INC BX\
+          DEC CL\
+          JNZ LOOP1\
+          JMP FINVOC\
+VERDADERO: MOV DX, 0FFH\
+           JMP FINVOC\
+FINVOC: MOV CX,DX\
+        POP DX\
+        POP BX\
+        POP AX\
+        RET\
+SUMA: INC CANT_VOCALES\
+RET\
+\
+ORG 2000H\
+MOV AX, OFFSET CADENA\
+MOV CL, LETRAS\
+DEC CX\
+MOV BX,OFFSET CADENA \
+ADD BX, CX\
+MOV CANT_VOCALES, 0\
+\
+LOOP: CMP AX,BX   ;PARA QUE TERMINE SI ES IMPAR\
+      JZ FIN      ;\
+      \
+      CALL SWAP\
+      \
+      MOV DX,[BX]\
+      PUSH DX\
+      MOV CX, OFFSET VOCALES\
+      CALL ES_VOCAL\
+      POP DX\
+      CMP CX,0FFH\
+      JZ SUMA\
+      \
+      MOV DX,BX\
+      MOV BX,AX\
+      MOV CX,[BX]\
+      MOV BX,DX\
+      MOV DX,CX\
+      PUSH DX\
+      MOV CX, OFFSET VOCALES\
+      CALL ES_VOCAL\
+      POP DX\
+      CMP CX,0FFH\
+      JZ SUMA\
+      \
+      INC AX      ;\
+      CMP AX,BX   ; PARA QUE TERMINE SI ES PAR\
+      JZ FIN      ;\
+      DEC AX      ;\
+      \
+      INC AX\
+      DEC BX\
+      JMP LOOP\
+FIN: HLT\
+END\
+\
+}

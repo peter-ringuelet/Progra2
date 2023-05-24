@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Gasoil
+comment1.params=
+comment1.target=Gasoil()
+comment2.params=numero\ importeTot\ playero
+comment2.target=Gasoil(int,\ double,\ Playero)
+comment3.params=patentes
+comment3.target=void\ setPatente(java.lang.String[])
+comment4.params=cantPatentes
+comment4.target=void\ setCantPatentes(int)
+comment5.params=
+comment5.target=java.lang.String[]\ getPatentes()
+comment6.params=
+comment6.target=int\ getCantPatentes()
+comment7.params=patente
+comment7.target=void\ cargarPatente(java.lang.String)
+comment8.params=
+comment8.target=double\ calcularImpuestos()
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=10

@@ -1,0 +1,108 @@
+programa ej3Clase5 
+procesos 
+  proceso JuntarFlores(ES flores:numero) 
+  comenzar  
+    mientras(HayFlorEnLaEsquina) 
+      tomarFlor 
+      flores:= flores + 1 
+  fin
+  proceso recorrer(ES flores:numero; E alto:numero; E ancho:numero) 
+  comenzar  
+    repetir alto
+      JuntarFlores(flores) 
+      mover 
+    derecha
+    repetir ancho
+      JuntarFlores(flores)
+      mover
+    derecha
+    repetir alto
+      JuntarFlores(flores)
+      mover
+    derecha
+    repetir ancho
+      JuntarFlores(flores)
+      mover
+    derecha
+    JuntarFlores(flores)  
+  fin 
+  proceso depositarFlores(E flores:numero)
+  comenzar
+    mientras(flores <> 0)
+      depositarFlor
+      flores:=flores - 1
+  fin
+areas 
+  areaPer1: AreaP(1,11,50,100)
+  areaPer2: AreaP(51,11,100,100)
+  areaP1: AreaP(2,2,2,2)
+  areaP2: AreaP(6,6,6,6)
+  areaJ: AreaP(1,1,1,1)
+  areaDep: AreaPC(10,10,10,10)
+robots  
+  robot perimetro
+  variables  
+    flores, avenida, calle, num: numero 
+    av,ca,alto,ancho:numero 
+  comenzar 
+    av:= PosAv
+    ca:= PosCa
+    RecibirMensaje(avenida,j)
+    RecibirMensaje(calle,j)
+    Pos(avenida,calle)
+    RecibirMensaje(alto,j)
+    RecibirMensaje(ancho,j)
+    flores:=0
+    recorrer(flores,alto,ancho)
+    BloquearEsquina(10,10)
+    Pos(10,10)
+    depositarFlores(flores)
+    Pos(av,ca)
+    LiberarEsquina(10,10) 
+    EnviarMensaje(flores,j)
+  fin 
+  robot jefe
+  variables
+    avenida,calle,alto,ancho:numero
+    num,flores:numero
+  comenzar
+    Random(avenida,1,49)
+    Random(calle,11,99)
+    EnviarMensaje(avenida,p1)
+    EnviarMensaje(calle,p1)
+    Random(alto,1,100 - calle)
+    Random(ancho,1,50 - avenida)
+    EnviarMensaje(alto,p1)
+    EnviarMensaje(ancho,p1)
+    Random(avenida,51,99)
+    Random(calle,11,99)
+    EnviarMensaje(avenida,p2)
+    EnviarMensaje(calle,p2)
+    Random(alto,0,100 - calle)
+    Random(ancho,0,100 - avenida)
+    EnviarMensaje(alto,p2)
+    EnviarMensaje(ancho,p2)
+    RecibirMensaje(num,*)
+    flores:= num
+    RecibirMensaje(num,*)
+    flores:=flores + num
+    Informar(flores)
+  fin
+variables 
+  p1,p2: perimetro
+  j: jefe 
+comenzar 
+  AsignarArea(p1,areaP1) 
+  AsignarArea(p2,areaP2) 
+  AsignarArea(p1,areaDep) 
+  AsignarArea(p2,areaDep)
+  AsignarArea(p1,areaPer1)
+  AsignarArea(p2,areaPer2)
+  AsignarArea(j,areaJ) 
+  Iniciar(p1,2,2) 
+  Iniciar(p2,6,6)  
+  Iniciar(j,1,1)   
+fin 
+
+
+

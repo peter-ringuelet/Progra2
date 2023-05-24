@@ -1,0 +1,151 @@
+programa Ej1Clase4
+procesos
+  proceso JuntarFlores(ES cant:numero)
+  comenzar
+    si (HayFlorEnLaEsquina)
+      mientras(HayFlorEnLaEsquina)
+        tomarFlor
+        cant:=cant+1
+  fin
+  proceso JuntarPapeles(ES cant:numero)
+  comenzar
+    si(HayPapelEnLaEsquina)
+      mientras(HayPapelEnLaEsquina)
+        tomarPapel
+        cant:=cant+1
+  fin
+  
+    
+areas
+  areaR1 : AreaC(1,1,1,100)
+  areaR2 : AreaC(2,100,100,100)
+  areaR3 : AreaC(100,1,100,99)
+  areaR4 : AreaC(2,1,99,1)
+  areaR5 : AreaP(49,50,49,50)
+  areaR6 : AreaP(50,49,50,49)
+robots 
+  robot tipo1
+  variables
+    cantFlores:numero
+    posCa,posAv: numero
+  comenzar
+    BloquearEsquina(1,1)
+    Pos(1,1)
+    repetir 99
+      posCa:= PosCa
+      posAv:= PosAv
+      JuntarFlores(cantFlores)
+      BloquearEsquina(posAv,posCa+1)
+      mover
+      LiberarEsquina(posAv,posCa)
+    derecha
+    posCa:=PosCa
+    posAv:=PosAv
+    JuntarFlores(cantFlores)
+    BloquearEsquina(posAv+1,posCa)
+    mover
+    LiberarEsquina(posAv - 1,posCa)
+    LiberarEsquina(posAv,posCa)
+    repetir 98
+      posCa:= PosCa
+      posAv:= PosAv
+      JuntarFlores(cantFlores)
+      BloquearEsquina(posAv+1,posCa)
+      mover
+      LiberarEsquina(posAv,posCa)
+    LiberarEsquina(posAv+1,posCa)
+    derecha
+    repetir 99
+      posCa:= PosCa
+      posAv:= PosAv
+      JuntarFlores(cantFlores)
+      BloquearEsquina(posAv,posCa+1)
+      mover
+      LiberarEsquina(posAv,posCa)
+    LiberarEsquina(posAv,posCa+1)
+    derecha
+    repetir 99
+      posCa:= PosCa
+      posAv:= PosAv
+      JuntarFlores(cantFlores)
+      BloquearEsquina(posAv+1,posCa)
+      mover
+      LiberarEsquina(posAv,posCa)
+    LiberarEsquina(posAv+1,posCa)
+    Pos(49,50)
+        
+        
+    Informar(cantFlores)
+  fin
+  
+  robot tipo2
+  variables
+    cantPapeles:numero
+    posCa,posAv: numero
+  comenzar
+    BloquearEsquina(1,1)
+    Pos(1,1)
+    cantPapeles:=0
+    repetir 99
+      posCa:=PosCa
+      posAv:=PosAv
+      JuntarPapeles(cantPapeles)
+      BloquearEsquina(posAv,posCa + 1)
+      mover
+      LiberarEsquina(posAv,posCa) 
+    derecha
+    posCa:=PosCa
+    posAv:=PosAv
+    JuntarPapeles(cantPapeles)
+    BloquearEsquina(posAv+1,posCa)
+    mover
+    LiberarEsquina(posAv - 1,posCa)
+    LiberarEsquina(posAv,posCa)
+    repetir 98
+      posCa:= PosCa
+      posAv:= PosAv
+      JuntarPapeles(cantPapeles)
+      BloquearEsquina(posAv+1,posCa)
+      mover
+      LiberarEsquina(posAv,posCa)
+    LiberarEsquina(posAv +1,posCa)
+    derecha
+    repetir 99
+      posCa:= PosCa
+      posAv:= PosAv
+      JuntarPapeles(cantPapeles)
+      BloquearEsquina(posAv,posCa+1)
+      mover
+      LiberarEsquina(posAv,posCa)
+    LiberarEsquina(posAv,posCa+1)
+    derecha
+    repetir 99
+      posCa:= PosCa
+      posAv:= PosAv
+      JuntarPapeles(cantPapeles)
+      BloquearEsquina(posAv+1,posCa)
+      mover
+      LiberarEsquina(posAv,posCa)
+    LiberarEsquina(posAv+1,posCa)
+    Pos(50,49)
+
+    Informar(cantPapeles)
+  fin
+      
+variables 
+  robot1: tipo1
+  robot2: tipo2
+comenzar 
+  AsignarArea(robot1,areaR1)
+  AsignarArea(robot1,areaR2)
+  AsignarArea(robot1,areaR3)
+  AsignarArea(robot1,areaR4)
+  AsignarArea(robot2,areaR1)
+  AsignarArea(robot2,areaR2)
+  AsignarArea(robot2,areaR3)
+  AsignarArea(robot2,areaR4)
+  AsignarArea(robot1,areaR5)
+  AsignarArea(robot2,areaR6)
+  Iniciar(robot1,49,50)
+  Iniciar(robot2,50,49)
+fin

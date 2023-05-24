@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Triangulo
+comment1.params=
+comment1.target=Triangulo()
+comment10.params=
+comment10.target=double\ getLado3()
+comment11.params=
+comment11.target=double\ calcularArea()
+comment12.params=
+comment12.target=double\ calcularPerimetro()
+comment2.params=lado
+comment2.target=void\ setLado1(double)
+comment3.params=lado
+comment3.target=void\ setLado2(double)
+comment4.params=lado
+comment4.target=void\ setLado3(double)
+comment5.params=color
+comment5.target=void\ setColorRelleno(java.lang.String)
+comment6.params=lado1\ lado2\ lado3\ colorRelleno\ colorLinea
+comment6.target=void\ cargarTriangulo(double,\ double,\ double,\ java.lang.String,\ java.lang.String)
+comment7.params=color
+comment7.target=void\ setColorLinea(java.lang.String)
+comment8.params=
+comment8.target=double\ getLado1()
+comment9.params=
+comment9.target=double\ getLado2()
+numComments=13

@@ -1,0 +1,55 @@
+programa ej1Clase5 
+procesos 
+  proceso JuntarFlores(ES flores:numero) 
+  comenzar  
+    mientras(HayFlorEnLaEsquina) 
+      tomarFlor 
+      flores:= flores + 1 
+  fin
+  proceso recorrer(ES flores:numero) 
+  comenzar  
+    repetir 4
+      repetir 15 
+        JuntarFlores(flores) 
+        mover 
+      derecha
+    JuntarFlores(flores)  
+  fin 
+  proceso depositarFlores(E flores:numero)
+  comenzar
+    mientras(flores <> 0)
+      depositarFlor
+      flores:=flores - 1
+  fin
+areas 
+  areaP1: AreaP(15,15,30,30)
+  areaP2: AreaP(40,40,55,55)
+  areaDep: AreaPC(10,10,10,10)
+robots  
+  robot perimetro
+  variables  
+    flores, avenida, calle, num: numero  
+  comenzar 
+    avenida:= PosAv
+    calle:= PosCa
+    flores:=0
+    recorrer(flores)
+    BloquearEsquina(10,10)
+    Pos(10,10)
+    depositarFlores(flores)
+    Pos(avenida,calle)
+    LiberarEsquina(10,10)   
+  fin 
+variables 
+  p1,p2: perimetro 
+comenzar 
+  AsignarArea(p1,areaP1) 
+  AsignarArea(p2,areaP2) 
+  AsignarArea(p1,areaDep) 
+  AsignarArea(p2,areaDep) 
+  Iniciar(p1,15,15) 
+  Iniciar(p2,40,40)     
+fin 
+
+
+
